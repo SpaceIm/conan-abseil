@@ -66,10 +66,10 @@ conan_basic_setup()""")
         cmake = self._configure_cmake()
         cmake.install()
         cmake_folder = os.path.join(self.package_folder, "lib", "cmake")
-        self._create_components_file_from_cmake_target_fle(os.path.join(cmake_folder, "absl", "abslTargets.cmake"))
+        self._create_components_file_from_cmake_target_file(os.path.join(cmake_folder, "absl", "abslTargets.cmake"))
         tools.rmdir(cmake_folder)
 
-    def _create_components_file_from_cmake_target_fle(self, absl_target_file_path):
+    def _create_components_file_from_cmake_target_file(self, absl_target_file_path):
         components = {}
 
         abs_target_file = open(absl_target_file_path, "r")
@@ -120,7 +120,7 @@ conan_basic_setup()""")
 
         # Save components informations in json file
         with open(self._components_helper_filepath, "w") as json_file:
-            json.dump(components, json_file)
+            json.dump(components, json_file, indent=4)
 
     @property
     def _components_helper_filepath(self):

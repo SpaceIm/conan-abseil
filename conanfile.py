@@ -67,7 +67,7 @@ conan_basic_setup()""")
         cmake.install()
         cmake_folder = os.path.join(self.package_folder, "lib", "cmake")
         self._create_components_file_from_cmake_target_fle(os.path.join(cmake_folder, "absl", "abslTargets.cmake"))
-        # tools.rmdir(cmake_folder)
+        tools.rmdir(cmake_folder)
 
     def _create_components_file_from_cmake_target_fle(self, absl_target_file_path):
         components = {}
@@ -109,7 +109,7 @@ conan_basic_setup()""")
                                     for system_lib in ["bcrypt", "advapi32", "dbghelp"]:
                                         if system_lib in dependency:
                                             components[potential_lib_name].setdefault("system_libs", []).append(system_lib)
-                                elif self.settings.os == "MacOs":
+                                elif self.settings.os == "Macos":
                                     for framework in ["CoreFoundation"]:
                                         if framework in dependency:
                                             components[potential_lib_name].setdefault("frameworks", []).append(framework)
